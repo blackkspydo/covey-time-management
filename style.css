@@ -19,6 +19,8 @@ header {
   aspect-ratio: 1/1;
   max-width: 800px;
   border-radius: 10px;
+  padding: 10px;
+  position: relative;
 }
 .grid-container .imp-urg {
   background-color: rgb(96, 150, 216);
@@ -31,6 +33,25 @@ header {
 }
 .grid-container .nimp-nurg {
   background-color: rgb(222, 114, 117);
+}
+.grid-container .add-button {
+  width: 40px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 100%;
+  font-size: 24px;
+  color: rgb(255, 255, 255);
+  border: dashed 1px rgb(255, 255, 255);
+  background: transparent;
+  cursor: pointer;
+}
+.grid-container .add-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.grid-container .add-button:active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .grid-container .imp-text {
   position: absolute;
@@ -61,4 +82,10 @@ header {
 
 .font-lg {
   font-size: 2rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
