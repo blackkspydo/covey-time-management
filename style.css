@@ -1,1 +1,64 @@
-/*# sourceMappingURL=style.css.map */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  max-width: 1000px;
+  margin: 6rem auto;
+  position: relative;
+}
+.grid-container .grid-items {
+  aspect-ratio: 1/1;
+  max-width: 800px;
+  border-radius: 10px;
+}
+.grid-container .imp-urg {
+  background-color: rgb(96, 150, 216);
+}
+.grid-container .imp-nurg {
+  background-color: rgb(71, 176, 145);
+}
+.grid-container .nimp-urg {
+  background-color: rgb(233, 171, 71);
+}
+.grid-container .nimp-nurg {
+  background-color: rgb(222, 114, 117);
+}
+.grid-container .imp-text {
+  position: absolute;
+  rotate: -90deg;
+  top: 25%;
+  left: -7rem;
+  translate: 0 -50%;
+}
+.grid-container .nimp-text {
+  position: absolute;
+  rotate: -90deg;
+  top: 75%;
+  left: -8.5rem;
+  translate: 0 -50%;
+}
+.grid-container .urg-text {
+  position: absolute;
+  top: -4rem;
+  left: 25%;
+  translate: -50% 0;
+}
+.grid-container .nurg-text {
+  position: absolute;
+  top: -4rem;
+  left: 75%;
+  translate: -50% 0;
+}
+
+.font-lg {
+  font-size: 2rem;
+}/*# sourceMappingURL=style.css.map */

@@ -1,3 +1,66 @@
-body{
-    
+body {
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  max-width: 1000px;
+  margin: 6rem auto;
+  position: relative;
+  .grid-items {
+    aspect-ratio: 1/1;
+    max-width: 800px;
+    border-radius: 10px;
+  }
+  .imp-urg {
+    background-color: rgba(96, 150, 216, 1);
+  }
+  .imp-nurg {
+    background-color: rgba(71, 176, 145, 1);
+  }
+  .nimp-urg {
+    background-color: rgba(233, 171, 71, 1);
+  }
+  .nimp-nurg {
+    background-color: rgba(222, 114, 117, 1);
+  }
+
+  .imp-text {
+    position: absolute;
+    rotate: -90deg;
+    top: 25%;
+    left: -7rem;
+    translate: 0 -50%;
+  }
+  .nimp-text {
+    position: absolute;
+    rotate: -90deg;
+    top: 75%;
+    left: -8.5rem;
+    translate: 0 -50%;
+  }
+  .urg-text {
+    position: absolute;
+    top: -4rem;
+    left: 25%;
+    translate: -50% 0;
+  }
+  .nurg-text {
+    position: absolute;
+    top: -4rem;
+    left: 75%;
+    translate: -50% 0;
+  }
+}
+
+.font-lg {
+  font-size: 2rem;
 }
