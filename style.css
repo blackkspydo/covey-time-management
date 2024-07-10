@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 20px 0;
 }
 
 header {
@@ -9,8 +9,12 @@ header {
   align-items: center;
   flex-direction: column;
   margin-bottom: 10px;
-  padding: 0 20px;
+  padding: 10px 20px;
   text-align: center;
+  position: relative;
+}
+header h3 {
+  font-weight: 400;
 }
 
 .grid-container {
@@ -159,8 +163,10 @@ header {
   translate: -50% 0;
 }
 
-#todoForm {
-  min-width: min(90vw, 400px) !important;
+#todoDialog {
+  border: none;
+  border-radius: 10px;
+  min-width: min(92vw, 400px) !important;
 }
 
 #addTodoDialog {
@@ -192,6 +198,11 @@ header {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  min-height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 40px;
 }
 
 .form-actions {
@@ -294,12 +305,14 @@ header {
 @media (max-width: 480px) {
   header h1 {
     font-size: 1.5rem;
+    margin: 0;
   }
   header h3 {
     font-size: 1rem;
+    font-weight: 400;
   }
   .grid-container {
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
   .grid-container .grid-items {
     min-height: 350px;
