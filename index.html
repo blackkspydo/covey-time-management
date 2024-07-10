@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covey's Time Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         .todo-item-deadline {
             font-size: 0.8em;
             color: #666;
         }
+
         .todo-item.overdue .todo-item-deadline {
             color: #f00;
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Covey's Time Management</h1>
@@ -54,27 +62,50 @@
     <script>
         // State
         let state = {
-            todos: [
-                { id: 1, text: "Example todo", type: "imp-urg", done: false, deadline: new Date(Date.now() + 86400000).toISOString() }
-            ],
-            nextId: 2,
+            todos: [],
+            nextId: 1,
             editingTodoId: null
         };
+
+        // Load data from local storage
+        function loadFromLocalStorage() {
+            const savedState = localStorage.getItem('coveyTimeManagementState');
+            if (savedState) {
+                state = JSON.parse(savedState);
+            } else {
+                // If no saved state, initialize with an example todo
+                state.todos.push({
+                    id: state.nextId++,
+                    text: "Example todo",
+                    type: "imp-urg",
+                    done: false,
+                    deadline: new Date(Date.now() + 86400000).toISOString()
+                });
+            }
+        }
+
+        // Save data to local storage
+        function saveToLocalStorage() {
+            localStorage.setItem('coveyTimeManagementState', JSON.stringify(state));
+        }
 
         // Actions
         function addTodo(text, type, deadline) {
             state.todos.push({ id: state.nextId++, text, type, done: false, deadline });
+            saveToLocalStorage();
             render();
         }
 
         function deleteTodo(id) {
             state.todos = state.todos.filter(todo => todo.id !== id);
+            saveToLocalStorage();
             render();
         }
 
         function toggleTodo(id) {
             const todo = state.todos.find(todo => todo.id === id);
             if (todo) todo.done = !todo.done;
+            saveToLocalStorage();
             render();
         }
 
@@ -82,6 +113,7 @@
             const todo = state.todos.find(todo => todo.id === id);
             if (todo && todo.type !== newType) {
                 todo.type = newType;
+                saveToLocalStorage();
                 render();
             }
         }
@@ -93,6 +125,7 @@
                 todo.type = newType;
                 todo.deadline = newDeadline;
             }
+            saveToLocalStorage();
             render();
         }
 
@@ -178,7 +211,7 @@
             const form = document.getElementById('todoForm');
             const todoType = document.getElementById('todoType');
             const dialogTitle = document.getElementById('dialogTitle');
-            
+
             dialogTitle.textContent = 'Add Todo';
             form.reset();
             todoType.value = e.target.dataset.type;
@@ -193,7 +226,7 @@
             const todoType = document.getElementById('todoType');
             const todoDeadline = document.getElementById('todoDeadline');
             const dialogTitle = document.getElementById('dialogTitle');
-            
+
             const todo = state.todos.find(todo => todo.id === id);
             if (todo) {
                 dialogTitle.textContent = 'Edit Todo';
@@ -210,14 +243,14 @@
             const todoText = document.getElementById('todoText');
             const todoType = document.getElementById('todoType');
             const todoDeadline = document.getElementById('todoDeadline');
-            
+
             if (state.editingTodoId === null) {
                 addTodo(todoText.value, todoType.value, todoDeadline.value);
             } else {
                 editTodo(state.editingTodoId, todoText.value, todoType.value, todoDeadline.value);
                 state.editingTodoId = null;
             }
-            
+
             document.getElementById('todoDialog').close();
         });
 
@@ -240,8 +273,10 @@
             moveTodo(todoId, newType);
         }
 
-        // Initial render
+        // Load data and initial render
+        loadFromLocalStorage();
         render();
     </script>
 </body>
+
 </html>

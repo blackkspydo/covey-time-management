@@ -152,6 +152,10 @@ header {
   translate: -50% 0;
 }
 
+#todoForm {
+  min-width: min(90vw, 400px) !important;
+}
+
 #addTodoDialog {
   width: 90%;
   max-width: 400px;
