@@ -161,14 +161,15 @@
         }
 
         function renderTodoItem(todo) {
-            const deadlineDate = new Date(todo.deadline);
-            const isOverdue = deadlineDate < new Date() && !todo.done;
+            const deadlineDate = todo.deadline ? new Date(todo.deadline) : null;
+            const isOverdue = deadlineDate ? deadlineDate < new Date() && !todo.done : false;
             return `
                 <div class="todo-item ${todo.done ? 'done' : ''} ${isOverdue ? 'overdue' : ''}" draggable="true" data-id="${todo.id}">
                     <div class="todo-item-text">
                         ${todo.text}
                         <div class="todo-item-deadline">
-                            Deadline: ${deadlineDate.toLocaleString()}
+                            Deadline: ${deadlineDate ?
+                    deadlineDate.toLocaleString() : "No deadline"}
                         </div>
                         <button class="delete-button" data-id="${todo.id}">X</button>
                         <button class="done-button" data-id="${todo.id}">✓</button>
@@ -211,7 +212,6 @@
             const form = document.getElementById('todoForm');
             const todoType = document.getElementById('todoType');
             const dialogTitle = document.getElementById('dialogTitle');
-
             dialogTitle.textContent = 'Add Todo';
             form.reset();
             todoType.value = e.target.dataset.type;
@@ -232,7 +232,7 @@
                 dialogTitle.textContent = 'Edit Todo';
                 todoText.value = todo.text;
                 todoType.value = todo.type;
-                todoDeadline.value = todo.deadline.slice(0, 16); // Format for datetime-local input
+                todoDeadline.value = todo.deadline.slice(0, 16);
                 state.editingTodoId = id;
                 dialog.showModal();
             }
