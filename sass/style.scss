@@ -1,20 +1,28 @@
 body {
+  margin: 0;
+  padding: 0;
 }
+
 header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: 10px;
+  padding: 0 20px;
+  text-align: center;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
   max-width: 1000px;
-  margin: 6rem auto;
+  margin: 6rem auto 2rem;
   position: relative;
+  padding: 0 20px;
+
   .grid-items {
     aspect-ratio: 1/1;
     max-width: 800px;
@@ -22,6 +30,7 @@ header {
     padding: 10px;
     position: relative;
     padding-top: 5rem;
+
     .grid-item-title {
       position: absolute;
       top: 1rem;
@@ -32,6 +41,7 @@ header {
       align-items: center;
       width: 100%;
     }
+
     .todo-container {
       .todo-item {
         background-color: rgba(255, 255, 255, 0.7);
@@ -87,6 +97,7 @@ header {
       }
     }
   }
+
   .imp-urg {
     background-color: rgba(96, 150, 216, 1);
   }
@@ -99,6 +110,7 @@ header {
   .nimp-nurg {
     background-color: rgba(222, 114, 117, 1);
   }
+
   .add-button {
     width: 40px;
     aspect-ratio: 1/1;
@@ -120,35 +132,41 @@ header {
     }
   }
 
-  .imp-text {
+  .imp-text,
+  .nimp-text,
+  .urg-text,
+  .nurg-text {
     position: absolute;
+    font-size: 2rem;
+  }
+
+  .imp-text {
     rotate: -90deg;
     top: 25%;
     left: -7rem;
     translate: 0 -50%;
   }
   .nimp-text {
-    position: absolute;
     rotate: -90deg;
     top: 75%;
     left: -8.5rem;
     translate: 0 -50%;
   }
   .urg-text {
-    position: absolute;
     top: -4rem;
     left: 25%;
     translate: -50% 0;
   }
   .nurg-text {
-    position: absolute;
     top: -4rem;
     left: 75%;
     translate: -50% 0;
   }
 }
+
 #addTodoDialog {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
@@ -159,7 +177,6 @@ header {
     margin-bottom: 20px;
     font-size: 24px;
   }
-  
 }
 
 .form-group {
@@ -205,6 +222,7 @@ header {
     }
   }
 }
+
 .font-lg {
   font-size: 2rem;
 }
@@ -219,4 +237,128 @@ header {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   color: #333;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    margin-top: 5rem;
+
+    .grid-items {
+      aspect-ratio: auto;
+      height: auto;
+      min-height: 400px;
+    }
+
+    .imp-text,
+    .nimp-text,
+    .urg-text,
+    .nurg-text {
+      font-size: 1.5rem;
+      display: none;
+    }
+
+    .imp-text,
+    .nimp-text {
+      rotate: 0deg;
+      top: -10rem;
+      left: 0;
+      width: 50%;
+      text-align: center;
+      translate: 0;
+    }
+
+    .urg-text,
+    .nurg-text {
+      top: -6rem;
+      width: 50%;
+      text-align: center;
+    }
+
+    .imp-text {
+      left: 0;
+    }
+
+    .nimp-text {
+      left: 50%;
+    }
+
+    .urg-text {
+      left: 0;
+    }
+
+    .nurg-text {
+      left: 50%;
+    }
+
+    .grid-item-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .todo-item-text {
+    font-size: 14px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    button {
+      margin: 5px 0;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    h1 {
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .grid-container {
+    margin-top: 5rem;
+
+    .grid-items {
+      min-height: 350px;
+    }
+
+    .imp-text,
+    .nimp-text,
+    .urg-text,
+    .nurg-text {
+      font-size: 1rem;
+      display: none;
+    }
+
+    .grid-item-title {
+      font-size: 1.2rem;
+    }
+  }
+
+  #addTodoDialog {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .form-group {
+    label {
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      font-size: 14px;
+    }
+  }
+
+  .form-actions button {
+    font-size: 14px;
+  }
 }

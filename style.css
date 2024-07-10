@@ -1,9 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: 10px;
+  padding: 0 20px;
+  text-align: center;
 }
 
 .grid-container {
@@ -12,8 +19,9 @@ header {
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
   max-width: 1000px;
-  margin: 6rem auto;
+  margin: 6rem auto 2rem;
   position: relative;
+  padding: 0 20px;
 }
 .grid-container .grid-items {
   aspect-ratio: 1/1;
@@ -114,35 +122,39 @@ header {
 .grid-container .add-button:active {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.grid-container .imp-text {
+.grid-container .imp-text,
+.grid-container .nimp-text,
+.grid-container .urg-text,
+.grid-container .nurg-text {
   position: absolute;
+  font-size: 2rem;
+}
+.grid-container .imp-text {
   rotate: -90deg;
   top: 25%;
   left: -7rem;
   translate: 0 -50%;
 }
 .grid-container .nimp-text {
-  position: absolute;
   rotate: -90deg;
   top: 75%;
   left: -8.5rem;
   translate: 0 -50%;
 }
 .grid-container .urg-text {
-  position: absolute;
   top: -4rem;
   left: 25%;
   translate: -50% 0;
 }
 .grid-container .nurg-text {
-  position: absolute;
   top: -4rem;
   left: 75%;
   translate: -50% 0;
 }
 
 #addTodoDialog {
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
@@ -207,4 +219,101 @@ header {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   color: #333;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    margin-top: 5rem;
+  }
+  .grid-container .grid-items {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 400px;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text,
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    font-size: 1.5rem;
+    display: none;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text {
+    rotate: 0deg;
+    top: -10rem;
+    left: 0;
+    width: 50%;
+    text-align: center;
+    translate: 0;
+  }
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    top: -6rem;
+    width: 50%;
+    text-align: center;
+  }
+  .grid-container .imp-text {
+    left: 0;
+  }
+  .grid-container .nimp-text {
+    left: 50%;
+  }
+  .grid-container .urg-text {
+    left: 0;
+  }
+  .grid-container .nurg-text {
+    left: 50%;
+  }
+  .grid-container .grid-item-title {
+    font-size: 1.5rem;
+  }
+  .todo-item-text {
+    font-size: 14px;
+  }
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-actions button {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  header h3 {
+    font-size: 1rem;
+  }
+  .grid-container {
+    margin-top: 5rem;
+  }
+  .grid-container .grid-items {
+    min-height: 350px;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text,
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    font-size: 1rem;
+    display: none;
+  }
+  .grid-container .grid-item-title {
+    font-size: 1.2rem;
+  }
+  #addTodoDialog h2 {
+    font-size: 20px;
+  }
+  .form-group label {
+    font-size: 14px;
+  }
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+  }
+  .form-actions button {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=style.css.map */
