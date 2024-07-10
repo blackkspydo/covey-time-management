@@ -52,23 +52,31 @@ header h3 {
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.grid-container .grid-items .todo-container .todo-item .todo-item-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .grid-container .grid-items .todo-container .todo-item .todo-item-text {
   position: relative;
-  padding-right: 100px;
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button,
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .done-button,
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .edit-button,
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .save-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 18px;
   cursor: pointer;
   border-radius: 100%;
   padding: 3px;
+  width: 30px;
+  flex-shrink: 0;
   aspect-ratio: 1/1;
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button:hover,
@@ -78,19 +86,15 @@ header h3 {
   background-color: rgba(112, 0, 0, 0.1);
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button {
-  right: 10px;
   color: #f44336;
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .done-button {
-  right: 40px;
   color: #4caf50;
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .edit-button {
-  right: 70px;
   color: #2196f3;
 }
 .grid-container .grid-items .todo-container .todo-item .todo-item-text .save-button {
-  right: 70px;
   color: #4caf50;
   display: none;
 }

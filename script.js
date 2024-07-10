@@ -151,9 +151,11 @@ function renderTodoItem(todo) {
                     Deadline: ${deadlineDate ?
             deadlineDate.toLocaleString() : "No deadline"}
                 </div>
-                <button class="delete-button" data-id="${todo.id}">X</button>
-                <button class="done-button" data-id="${todo.id}">✓</button>
+                <div class="todo-item-buttons">
                 <button class="edit-button" data-id="${todo.id}">✎</button>
+                <button class="done-button" data-id="${todo.id}">✓</button>
+                <button class="delete-button" data-id="${todo.id}">X</button>
+                </div>
             </div>
         </div>
     `;
