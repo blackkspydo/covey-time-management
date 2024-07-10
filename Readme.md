@@ -2,6 +2,10 @@
 
 This is a simple web application that implements Covey's Time Management Matrix using HTML, CSS, and vanilla JavaScript. The app allows you to categorize tasks into four quadrants based on their urgency and importance.
 
+## Try it out
+
+You can try out the app [here](https://blackkspydo.github.io/covey-time-management/).
+
 ## Features
 
 - Add tasks with a title and description
@@ -18,9 +22,9 @@ This is a simple web application that implements Covey's Time Management Matrix 
 To run the app locally, follow these steps:
 
 1. Clone the repository:
-   
+```
    git clone https://github.com/blackkspydo/covey-time-management.git
-   
+```   
 
 2. Open the `index.html` file in your web browser.
 
