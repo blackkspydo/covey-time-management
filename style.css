@@ -1,1 +1,323 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  max-width: 1000px;
+  margin: 6rem auto 2rem;
+  position: relative;
+  padding: 0 20px;
+}
+.grid-container .grid-items {
+  aspect-ratio: 1/1;
+  max-width: 800px;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  padding-top: 5rem;
+}
+.grid-container .grid-items .grid-item-title {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.grid-container .grid-items .todo-container .todo-item {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text {
+  position: relative;
+  padding-right: 100px;
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .done-button,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .edit-button,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .save-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 3px;
+  aspect-ratio: 1/1;
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button:hover,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .done-button:hover,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .edit-button:hover,
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .save-button:hover {
+  background-color: rgba(112, 0, 0, 0.1);
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .delete-button {
+  right: 10px;
+  color: #f44336;
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .done-button {
+  right: 40px;
+  color: #4caf50;
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .edit-button {
+  right: 70px;
+  color: #2196f3;
+}
+.grid-container .grid-items .todo-container .todo-item .todo-item-text .save-button {
+  right: 70px;
+  color: #4caf50;
+  display: none;
+}
+.grid-container .imp-urg {
+  background-color: rgb(96, 150, 216);
+}
+.grid-container .imp-nurg {
+  background-color: rgb(71, 176, 145);
+}
+.grid-container .nimp-urg {
+  background-color: rgb(233, 171, 71);
+}
+.grid-container .nimp-nurg {
+  background-color: rgb(222, 114, 117);
+}
+.grid-container .add-button {
+  width: 40px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 100%;
+  font-size: 24px;
+  color: rgb(255, 255, 255);
+  border: dashed 1px rgb(255, 255, 255);
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+}
+.grid-container .add-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.grid-container .add-button:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.grid-container .imp-text,
+.grid-container .nimp-text,
+.grid-container .urg-text,
+.grid-container .nurg-text {
+  position: absolute;
+  font-size: 2rem;
+}
+.grid-container .imp-text {
+  rotate: -90deg;
+  top: 25%;
+  left: -7rem;
+  translate: 0 -50%;
+}
+.grid-container .nimp-text {
+  rotate: -90deg;
+  top: 75%;
+  left: -8.5rem;
+  translate: 0 -50%;
+}
+.grid-container .urg-text {
+  top: -4rem;
+  left: 25%;
+  translate: -50% 0;
+}
+.grid-container .nurg-text {
+  top: -4rem;
+  left: 75%;
+  translate: -50% 0;
+}
+
+#todoForm {
+  min-width: min(90vw, 400px) !important;
+}
+
+#addTodoDialog {
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#addTodoDialog h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.form-actions button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.form-actions button[type=submit] {
+  background-color: #007bff;
+  color: #fff;
+}
+.form-actions button[type=button] {
+  background-color: #ccc;
+  color: #333;
+}
+
+.font-lg {
+  font-size: 2rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    margin-top: 5rem;
+  }
+  .grid-container .grid-items {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 400px;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text,
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    font-size: 1.5rem;
+    display: none;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text {
+    rotate: 0deg;
+    top: -10rem;
+    left: 0;
+    width: 50%;
+    text-align: center;
+    translate: 0;
+  }
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    top: -6rem;
+    width: 50%;
+    text-align: center;
+  }
+  .grid-container .imp-text {
+    left: 0;
+  }
+  .grid-container .nimp-text {
+    left: 50%;
+  }
+  .grid-container .urg-text {
+    left: 0;
+  }
+  .grid-container .nurg-text {
+    left: 50%;
+  }
+  .grid-container .grid-item-title {
+    font-size: 1.5rem;
+  }
+  .todo-item-text {
+    font-size: 14px;
+  }
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-actions button {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  header h3 {
+    font-size: 1rem;
+  }
+  .grid-container {
+    margin-top: 5rem;
+  }
+  .grid-container .grid-items {
+    min-height: 350px;
+  }
+  .grid-container .imp-text,
+  .grid-container .nimp-text,
+  .grid-container .urg-text,
+  .grid-container .nurg-text {
+    font-size: 1rem;
+    display: none;
+  }
+  .grid-container .grid-item-title {
+    font-size: 1.2rem;
+  }
+  #addTodoDialog h2 {
+    font-size: 20px;
+  }
+  .form-group label {
+    font-size: 14px;
+  }
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+  }
+  .form-actions button {
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=style.css.map */
