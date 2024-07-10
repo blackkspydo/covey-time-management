@@ -97,7 +97,14 @@ header {
       }
     }
   }
+  .todo-item-deadline {
+    font-size: 0.8em;
+    color: #666;
+  }
 
+  .todo-item.overdue .todo-item-deadline {
+    color: #f00;
+  }
   .imp-urg {
     background-color: rgba(96, 150, 216, 1);
   }
