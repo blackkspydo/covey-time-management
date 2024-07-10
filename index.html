@@ -23,23 +23,189 @@
             <div class="nimp-text font-lg">Not Important</div>
             <div class="urg-text font-lg">Urgent</div>
             <div class="nurg-text font-lg">Not Urgent</div>
-            <div class="grid-items imp-urg">
-                <button class="add-button flex-center">+</button>
+            <div class="grid-items imp-urg" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <button data-type="imp-urg" class="add-button flex-center" onclick="openDialog(this)">+</button>
+                <div class="grid-item-title">
+                    Do First
+                </div>
+                <div class="todo-container">
+                    <div class="todo-item" draggable="true" ondragstart="drag(event)" data-id="1" data-type="imp-urg">
+                        <div class="todo-item-text">
+                            Lorem ipsum dolor sit.
+                            <button class="delete-button">X</button>
+                            <button class="done-button">✓</button>
+                            <button class="edit-button">✎</button>
+                            <button class="save-button">✓</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="grid-items imp-nurg">
-                <button class="add-button flex-center">+</button>
+            <div class="grid-items imp-nurg" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="grid-item-title">
+                    Schedule
+                </div>
+                <button data-type="imp-nurg" class="add-button flex-center" onclick="openDialog(this)">+</button>
+                <div class="todo-container"></div>
             </div>
-            <div class="grid-items nimp-urg">
-                <button class="add-button flex-center">+</button>
+            <div class="grid-items nimp-urg" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="grid-item-title">
+                    Delegate
+                </div>
+                <button data-type="nimp-urg" class="add-button flex-center" onclick="openDialog(this)">+</button>
+                <div class="todo-container"></div>
             </div>
-            <div class="grid-items nimp-nurg">
-                <button class="add-button flex-center">+</button>
+            <div class="grid-items nimp-nurg" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="grid-item-title">
+                    Don't Do
+                </div>
+                <button data-type="nimp-nurg" class="add-button flex-center" onclick="openDialog(this)">+</button>
+                <div class="todo-container"></div>
             </div>
         </div>
     </main>
     <footer>
 
     </footer>
+
+    <dialog id="addTodoDialog">
+        <form method="dialog">
+            <h2>Add Todo</h2>
+            <div class="form-group">
+                <label for="todoText">Todo:</label>
+                <input type="text" id="todoText" name="todoText" required>
+            </div>
+            <div class="form-group">
+                <label for="todoType">Type:</label>
+                <select id="todoType" name="todoType">
+                    <option value="imp-urg">Important & Urgent</option>
+                    <option value="imp-nurg">Important & Not Urgent</option>
+                    <option value="nimp-urg">Not Important & Urgent</option>
+                    <option value="nimp-nurg">Not Important & Not Urgent</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Add</button>
+                <button onclick="cancelDialog()" type="button" id="cancelButton">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script>
+        let todoId = 1;
+    
+        class Todo {
+            constructor(text, type) {
+                this.id = todoId++;
+                this.text = text;
+                this.type = type;
+            }
+    
+            createHTML() {
+                const todoItem = document.createElement('div');
+                todoItem.classList.add('todo-item');
+                todoItem.setAttribute('draggable', 'true');
+                todoItem.setAttribute('data-id', this.id);
+                todoItem.setAttribute('data-type', this.type);
+                todoItem.innerHTML = `
+                    <div class="todo-item-text">
+                        ${this.text}
+                        <button class="delete-button" onclick="deleteTodo(${this.id})">X</button>
+                        <button class="done-button" onclick="markAsDone(${this.id})">✓</button>
+                        <button class="edit-button" onclick="editTodo(${this.id})">✎</button>
+                        <button class="save-button" onclick="saveTodo(${this.id})">✓</button>
+                    </div>`;
+                todoItem.addEventListener('dragstart', drag);
+                return todoItem;
+            }
+        }
+    
+        function openDialog(button) {
+            const dialog = document.getElementById('addTodoDialog');
+            const todoType = document.getElementById('todoType');
+            todoType.value = button.dataset.type;
+            dialog.showModal();
+        }
+    
+        function submitDialog(event) {
+            event.preventDefault();
+            const todoText = document.getElementById('todoText');
+            const todoType = document.getElementById('todoType');
+            const todoContainer = document.querySelector(`.grid-items.${todoType.value} .todo-container`);
+            
+            const newTodo = new Todo(todoText.value, todoType.value);
+            todoContainer.appendChild(newTodo.createHTML());
+            
+            todoText.value = '';
+            document.getElementById('addTodoDialog').close();
+        }
+    
+        function cancelDialog() {
+            document.getElementById('addTodoDialog').close();
+        }
+    
+        document.getElementById('addTodoDialog').querySelector('form').addEventListener('submit', submitDialog);
+    
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+    
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.getAttribute('data-id'));
+        }
+    
+        function drop(ev) {
+            ev.preventDefault();
+            const todoId = ev.dataTransfer.getData("text");
+            const todoItem = document.querySelector(`[data-id="${todoId}"]`);
+            const oldType = todoItem.getAttribute('data-type');
+            const newType = ev.target.closest('.grid-items').classList[1];
+            const todoContainer = ev.target.closest('.grid-items').querySelector('.todo-container');
+    
+            if (oldType !== newType && todoContainer.children.length === 0) {
+                todoContainer.appendChild(todoItem);
+                todoItem.setAttribute('data-type', newType);
+            }
+        }
+    
+        function deleteTodo(id) {
+            const todoItem = document.querySelector(`[data-id="${id}"]`);
+            todoItem.remove();
+        }
+    
+        function markAsDone(id) {
+            const todoItem = document.querySelector(`[data-id="${id}"]`);
+            todoItem.classList.toggle('done');
+        }
+    
+        function editTodo(id) {
+            const todoItem = document.querySelector(`[data-id="${id}"]`);
+            const todoText = todoItem.querySelector('.todo-item-text');
+            const currentText = todoText.childNodes[0].nodeValue.trim();
+            todoText.innerHTML = `
+                <input type="text" value="${currentText}">
+                <button class="save-button" onclick="saveTodo(${id})">✓</button>
+            `;
+        }
+    
+        function saveTodo(id) {
+            const todoItem = document.querySelector(`[data-id="${id}"]`);
+            const todoText = todoItem.querySelector('.todo-item-text');
+            const input = todoText.querySelector('input');
+            const newText = input.value;
+            todoText.innerHTML = `
+                ${newText}
+                <button class="delete-button" onclick="deleteTodo(${id})">X</button>
+                <button class="done-button" onclick="markAsDone(${id})">✓</button>
+                <button class="edit-button" onclick="editTodo(${id})">✎</button>
+                <button class="save-button" onclick="saveTodo(${id})">✓</button>
+            `;
+        }
+    
+        // Add drag event listeners to existing todo items
+        document.querySelectorAll('.todo-item').forEach(item => {
+            item.addEventListener('dragstart', drag);
+        });
+    </script>
 </body>
 
 </html>
