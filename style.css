@@ -345,4 +345,7 @@ header h3 {
   .form-actions button {
     font-size: 14px;
   }
+}
+.todo-item:hover {
+  cursor: grab;
 }/*# sourceMappingURL=style.css.map */
