@@ -348,4 +348,10 @@ header h3 {
 }
 .todo-item:hover {
   cursor: grab;
+}
+
+#progress {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }/*# sourceMappingURL=style.css.map */

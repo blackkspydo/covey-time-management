@@ -16,7 +16,6 @@ header {
     font-weight: 400;
     margin: 0;
   }
-
 }
 
 .grid-container {
@@ -392,8 +391,13 @@ header {
   }
 }
 
-.todo-item{
-  &:hover{
+.todo-item {
+  &:hover {
     cursor: grab;
   }
+}
+#progress {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }

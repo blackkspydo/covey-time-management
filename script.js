@@ -47,7 +47,7 @@ function updateProgress() {
   const completedTodos = state.todos.filter((todo) => todo.done).length;
   const progressPrecentage = (completedTodos / totalTodos) * 100;
   console.table(progressPrecentage, completedTodos, totalTodos);
-  progress.innerHTML = `Progress Percentage: ${progressPrecentage}`;
+  progress.innerHTML = `Progress: ${progressPrecentage.toFixed(2)}%`;
 }
 
 function completeTodo(id) {
