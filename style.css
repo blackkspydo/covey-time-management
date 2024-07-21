@@ -345,4 +345,13 @@ header h3 {
   .form-actions button {
     font-size: 14px;
   }
+}
+.todo-item:hover {
+  cursor: grab;
+}
+
+#progress {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }/*# sourceMappingURL=style.css.map */
